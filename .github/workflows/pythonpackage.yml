@@ -27,11 +27,10 @@ jobs:
     - name: Achive to zip
       run: |
         powershell compress-archive -Path dist/vrc_log_viewer.exe,config.yml -DestinationPath dist/vrc_log_viewer.zip
-        Remove-Item dist/config.yml
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: "dist/**"
+        files: "dist/vrc_log_viewer.zip"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
